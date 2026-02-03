@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weapon Analysis Dashboard - Republic</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="assets/weapon-images.js"></script>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header-section">
+  <div class="container-fluid">
+    <div class="row align-items-center py-3">
+      <div class="col-12 text-center">
+        <div class="header-content">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png" alt="India Flag" class="flag-icon">
+          <h1 class="main-title">WEAPON ANALYSIS DASHBOARD</h1>
+          <p class="subtitle">DATA-DRIVEN DEFENCE INSIGHTS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Dashboard -->
+<main class="dashboard-container">
+  <div class="container-fluid">
+    
+    <!-- Top Stats Row -->
+    <div class="row stats-row mb-4">
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="stat-number">3.09</div>
+          <div class="stat-label">Average Customer Rating</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="stat-number">115</div>
+          <div class="stat-label">Total Weapons Available</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="stat-number">₹9.53M</div>
+          <div class="stat-label">Average Weapon Cost (INR)</div>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="stat-card">
+          <div class="stat-number">86</div>
+          <div class="stat-label">Total Weapon Models</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row main-content">
+      
+      <!-- Left Sidebar -->
+      <div class="col-2 sidebar">
+        
+        <!-- Weapon Type Filter -->
+        <div class="filter-section mb-4">
+          <h6 class="filter-title">WEAPON TYPE</h6>
+          <div class="filter-item">
+            <input type="checkbox" id="pistol" checked>
+            <label for="pistol">Pistol</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="rifle" checked>
+            <label for="rifle">Rifle</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="shotgun" checked>
+            <label for="shotgun">Shotgun</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="sniper" checked>
+            <label for="sniper">Sniper</label>
+          </div>
+        </div>
+
+        <!-- Brand Filter -->
+        <div class="filter-section mb-4">
+          <h6 class="filter-title">BRAND</h6>
+          <div class="filter-item">
+            <input type="checkbox" id="gng" checked>
+            <label for="gng">G&G</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="tokyo" checked>
+            <label for="tokyo">Tokyo Marui</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="cyma" checked>
+            <label for="cyma">CYMA</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="novritsch" checked>
+            <label for="novritsch">Novritsch</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="vfc" checked>
+            <label for="vfc">VFC</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="lancer" checked>
+            <label for="lancer">Lancer Tactical</label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" id="umarex" checked>
+            <label for="umarex">Umarex</label>
+          </div>
+        </div>
+
+        <!-- Weapon Types by Model Count -->
+        <div class="model-count-section">
+          <h6 class="section-title">Weapon Types by Model Count</h6>
+          <div class="brand-list">
+            <div class="brand-item">
+              <span class="brand-name">G&G</span>
+              <span class="brand-count">34</span>
+            </div>
+            <div class="brand-item">
+              <span class="brand-name">Tokyo Marui</span>
+              <span class="brand-count">21</span>
+            </div>
+            <div class="brand-item">
+              <span class="brand-name">CYMA</span>
+              <span class="brand-count">15</span>
+            </div>
+            <div class="brand-item">
+              <span class="brand-name">Novritsch</span>
+              <span class="brand-count">9</span>
+            </div>
+            <div class="brand-item">
+              <span class="brand-name">VFC</span>
+              <span class="brand-count">6</span>
+            </div>
+            <div class="brand-item">
+              <span class="brand-name">Lancer Tactical</span>
+              <span class="brand-count">4</span>
+            </div>
+            <div class="brand-item">
+              <span class="brand-name">Umarex</span>
+              <span class="brand-count">3</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Center Content -->
+      <div class="col-7 center-content">
+        
+        <!-- Weapon Type Chart -->
+        <div class="chart-section mb-4">
+          <h6 class="chart-title">Weapon Type by Model Count</h6>
+          <canvas id="weaponTypeChart" height="100"></canvas>
+        </div>
+
+        <!-- Main Weapon Display -->
+        <div class="weapon-display-container">
+          <div class="weapon-circle-container">
+            <div class="weapon-circle">
+              <img src="https://images.unsplash.com/photo-1544717684-6e5e4c6b7e3b?w=600&h=400&fit=crop&crop=center" alt="Shotgun" class="weapon-image" id="mainWeaponImage">
+            </div>
+          </div>
+          <div class="weapon-info-panel">
+            <div class="weapon-title">Shotgun M83</div>
+            <div class="weapon-cost">Cost: ₹1.6L</div>
+            <div class="weapon-rating">Rating: ★ 4.2</div>
+            <div class="weapon-availability">Availability: In Stock</div>
+          </div>
+        </div>
+
+        <!-- Cost vs Customer Rating Chart -->
+        <div class="chart-section mt-4">
+          <h6 class="chart-title">Cost Vs Customer Rating</h6>
+          <canvas id="scatterChart" height="150"></canvas>
+        </div>
+
+        <!-- Bottom Charts Row - Bigger -->
+        <div class="row bottom-charts mt-4">
+          <div class="col-4">
+            <div class="mini-chart">
+              <h6>Rifle</h6>
+              <canvas id="rifleChart"></canvas>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mini-chart">
+              <h6>Shotgun</h6>
+              <canvas id="shotgunChart"></canvas>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mini-chart">
+              <h6>Sniper</h6>
+              <canvas id="sniperChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Sidebar -->
+      <div class="col-3 right-sidebar">
+        
+        <!-- Caliber Distribution -->
+        <div class="chart-section mb-4">
+          <h6 class="chart-title">Caliber Distribution</h6>
+          <canvas id="caliberChart"></canvas>
+          <div class="caliber-legend">
+            <div class="legend-item">
+              <span class="legend-color orange"></span>
+              <span>9mm (56.7%)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color green"></span>
+              <span>.45 (12.8%)</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-color gray"></span>
+              <span>5.56 (30.4%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stock Status -->
+        <div class="chart-section mb-4">
+          <h6 class="chart-title">Stock Status Distribution</h6>
+          <div class="stock-stats">
+            <div class="stock-item">
+              <span class="stock-number">100</span>
+              <span class="stock-label">(80.7%)</span>
+              <span class="stock-desc">In Stock</span>
+            </div>
+            <div class="stock-item">
+              <span class="stock-number">15</span>
+              <span class="stock-label">(6.1%)</span>
+              <span class="stock-desc">Out of Stock</span>
+            </div>
+            <div class="stock-item">
+              <span class="stock-number">15</span>
+              <span class="stock-label">(13.0%)</span>
+              <span class="stock-desc">Limited</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top 5 Most Expensive -->
+        <div class="expensive-section mb-4">
+          <h6 class="section-title">Top 5 Most Expensive Weapons</h6>
+          <div class="expensive-list">
+            <div class="expensive-item">
+              <span class="weapon-name">Sniper M4A4</span>
+              <span class="weapon-price">₹18.0L</span>
+            </div>
+            <div class="expensive-item">
+              <span class="weapon-name">Rifle M416</span>
+              <span class="weapon-price">₹17.2L</span>
+            </div>
+            <div class="expensive-item">
+              <span class="weapon-name">Shotgun M83</span>
+              <span class="weapon-price">₹16.5L</span>
+            </div>
+            <div class="expensive-item">
+              <span class="weapon-name">Sniper M107</span>
+              <span class="weapon-price">₹16.1L</span>
+            </div>
+            <div class="expensive-item">
+              <span class="weapon-name">Pistol P158</span>
+              <span class="weapon-price">₹15.3L</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Brand-wise Weapon Model Count -->
+        <div class="brand-chart-section mb-4">
+          <h6 class="chart-title">Brand-wise Weapon Model Count</h6>
+          <canvas id="brandChart"></canvas>
+        </div>
+
+        <!-- Average Cost by Weapon Type -->
+        <div class="avg-cost-section">
+          <h6 class="section-title">Average Cost by Weapon Type</h6>
+          <div class="cost-bars">
+            <div class="cost-item">
+              <span class="weapon-type">Sniper</span>
+              <div class="cost-bar">
+                <div class="cost-fill" style="width: 90%"></div>
+              </div>
+              <span class="cost-value">₹11.6L</span>
+            </div>
+            <div class="cost-item">
+              <span class="weapon-type">Pistol</span>
+              <div class="cost-bar">
+                <div class="cost-fill" style="width: 70%"></div>
+              </div>
+              <span class="cost-value">₹9.5L</span>
+            </div>
+            <div class="cost-item">
+              <span class="weapon-type">Shotgun</span>
+              <div class="cost-bar">
+                <div class="cost-fill" style="width: 60%"></div>
+              </div>
+              <span class="cost-value">₹7.4L</span>
+            </div>
+            <div class="cost-item">
+              <span class="weapon-type">Rifle</span>
+              <div class="cost-bar">
+                <div class="cost-fill" style="width: 55%"></div>
+              </div>
+              <span class="cost-value">₹7.2L</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
